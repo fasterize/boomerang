@@ -59,7 +59,7 @@ all `tests/unit/*.js` files via Grunt and [Karma](https://karma-runner.github.io
 * `grunt test:unit:all`
 * `grunt test:unit:allHeadless`
 * `grunt test:unit:Chrome`
-* `grunt test:unit:ChromeHeadless`
+* `grunt test:unit:ChromeHeadlessNoSandBox`
 * `grunt test:unit:Firefox`
 * `grunt test:unit:FirefoxHeadless`
 * `grunt test:unit:Edge`
@@ -106,7 +106,7 @@ all E2E tests files via Grunt and [Protractor](https://www.protractortest.org/):
 * `grunt test:e2e:debug` - will only run tests in `tests/e2e/e2e-debug.json`
 * `grunt test:e2e:PhantomJS`
 * `grunt test:e2e:Chrome`
-* `grunt test:e2e:ChromeHeadless`
+* `grunt test:e2e:ChromeHeadlessNoSandBox`
 * `grunt test:e2e:Firefox`
 * `grunt test:e2e:FirefoxHeadless`
 * `grunt test:e2e:Edge`

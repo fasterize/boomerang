@@ -33,7 +33,7 @@ var TEST_URL_BASE = grunt.option("test-url") || "http://" + boomerangE2ETestDoma
 var SELENIUM_ADDRESS = grunt.option("selenium-address") || "http://" + boomerangE2ETestDomain + ":4444/wd/hub";
 var E2E_BASE_URL = "http://" + boomerangE2ETestDomain + ":" + TEST_DEBUG_PORT + "/";
 
-var DEFAULT_BROWSER = grunt.option("test-browser") || "ChromeHeadless";
+var DEFAULT_BROWSER = grunt.option("test-browser") || "ChromeHeadlessNoSandBox";
 
 var DEFAULT_UGLIFY_BOOMERANGJS_OPTIONS = {
 	preserveComments: false,
@@ -588,7 +588,7 @@ module.exports = function() {
 			all: {
 				browsers: [
 					"Chrome",
-					"ChromeHeadless",
+					"ChromeHeadlessNoSandBox",
 					"Edge",
 					"Firefox",
 					"FirefoxHeadless",
@@ -601,7 +601,7 @@ module.exports = function() {
 			},
 			allHeadless: {
 				browsers: [
-					"ChromeHeadless",
+					"ChromeHeadlessNoSandBox",
 					"FirefoxHeadless",
 					"PhantomJS"
 				]
@@ -609,8 +609,8 @@ module.exports = function() {
 			Chrome: {
 				browsers: ["Chrome"]
 			},
-			ChromeHeadless: {
-				browsers: ["ChromeHeadless"]
+			ChromeHeadlessNoSandBox: {
+				browsers: ["ChromeHeadlessNoSandBox"]
 			},
 			Firefox: {
 				browsers: ["Firefox"]
@@ -987,7 +987,7 @@ module.exports = function() {
 		"test:unit:all": ["build", "karma:all"],
 		"test:unit:allHeadless": ["build", "karma:allHeadless"],
 		"test:unit:Chrome": ["build", "karma:Chrome"],
-		"test:unit:ChromeHeadless": ["build", "karma:ChromeHeadless"],
+		"test:unit:ChromeHeadlessNoSandBox": ["build", "karma:ChromeHeadlessNoSandBox"],
 		"test:unit:Firefox": ["build", "karma:Firefox"],
 		"test:unit:FirefoxHeadless": ["build", "karma:FirefoxHeadless"],
 		"test:unit:Edge": ["build", "karma:Edge"],

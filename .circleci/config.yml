@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-
+      - run:
+          name: Installing Dependencies
+          command: |
+            sudo apt-get update && sudo apt-get install -yq libxtst6 libnss3-dev libxss1 libasound2 libatk-bridge2.0-0 libgtk-3-0
+            npm install
+            npx bower install
+            node node_modules/protractor/bin/webdriver-manager update
+      - run:
+          name: Update Hosts file
+          command: echo 127.0.0.1 boomerang-test.local boomerang-test2.local | sudo tee -a /etc/hosts
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+      - run:
+          name: Run unit tests
+          command: npx grunt test:unit:ChromeHeadlessNoSandBox -v

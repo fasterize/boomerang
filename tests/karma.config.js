@@ -1,6 +1,7 @@
 /*eslint-env node*/
 
 var url = require("url");
+process.env.CHROME_BIN = require("puppeteer").executablePath();
 
 module.exports = function(config) {
 	var remoteSelenium = false, u, webdriverConfig;
@@ -61,11 +62,19 @@ module.exports = function(config) {
 
 		config.set({
 			customLaunchers: {
-				"ChromeHeadless": {
+				"ChromeHeadlessBase": {
 					base: "WebDriver",
 					config: webdriverConfig,
-					browserName: "chrome",
+					browserName: "chromeBase",
 					flags: ["--headless", "--disable-gpu", "--window-size=1024,768"],
+					platform: "ANY",
+					version: "ANY"
+				},
+				ChromeHeadlessNoSandBox: {
+					base: "ChromeHeadlessBase",
+					config: webdriverConfig,
+					browserName: "chrome",
+					flags: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-web-security"],
 					platform: "ANY",
 					version: "ANY"
 				},
@@ -87,7 +96,7 @@ module.exports = function(config) {
 				}
 			},
 
-			browsers: ["ChromeHeadless", "FirefoxHeadless", "PhantomJS"]
+			browsers: ["ChromeHeadlessNoSandBox", "FirefoxHeadless", "PhantomJS"]
 		});
 	}
 };
