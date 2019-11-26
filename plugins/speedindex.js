@@ -264,7 +264,7 @@ var RUMSpeedIndex = function(win) {
   var complete;
 
   var impl = {
-    speedIndexRatio: w["frz_speed_index_ratio"],
+    speedIndexRatio: w["frzSpeedIndexRatio"],
     complete: false,
     done: function() {
       var speedIndex = RUMSpeedIndex(w);
